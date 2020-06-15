@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "client": "PORT=3004 npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,7 @@
     "mongoose": "^5.9.17"
   },
   "devDependencies": {
-    "concurrency": "^0.1.4",
+    "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"
   }
 }
