@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 
+import { useHttp } from '../hooks/http.hook'
+
 export const AuthPage = () => {
   const [form, setForm] = useState({
     email: '', password: ''
   })
+  const {loading, error, request} = useHttp()
 
   const changeHandler = event => {
     setForm({...form, [event.target.name]: event.target.value})
   }
+
   return (
     <div className="row">
       <div className="col s6 offset-s3">
