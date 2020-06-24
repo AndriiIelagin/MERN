@@ -24,11 +24,11 @@ export const useHttp = () => {
     } catch (e) {
       setLoading(false)
       setError(e.message)
-      throw e
+      // throw e
     }
   }, [])
 
-  const clearError = () => setError(null)
+  const clearError = useCallback(() => setError(null), [])
 
   return { loading, request, error, clearError }
 }
