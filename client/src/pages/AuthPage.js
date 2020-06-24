@@ -12,6 +12,13 @@ export const AuthPage = () => {
     setForm({...form, [event.target.name]: event.target.value})
   }
 
+  const registerHandler = () => {
+    try {
+      const data = request('/api/auth/register', 'POST', {...form})
+      console.log('data', data)
+    } catch (e) {}
+  }
+
   return (
     <div className="row">
       <div className="col s6 offset-s3">
@@ -47,8 +54,20 @@ export const AuthPage = () => {
             </div>
           </div>
           <div class="card-action">
-            <button className="btn yellow darken-4" style={{marginRight: 10}}>Login</button>
-            <button className="btn grey lighten-1 black-text">Register</button>
+            <button 
+              className="btn yellow darken-4" 
+              style={{marginRight: 10}}
+              disabled={loading}
+            >
+              Login
+            </button>
+            <button 
+              className="btn grey lighten-1 black-text"
+              onClick={registerHandler}
+              disabled={loading}
+            >
+              Register
+            </button>
           </div>
         </div>
       </div>
