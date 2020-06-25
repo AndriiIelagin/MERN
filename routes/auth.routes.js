@@ -47,8 +47,8 @@ router.post(
 router.post(
   '/login',
   [
-    check('email', 'Enter valid email, please').normalizeEmail().isEmpty(),
-    check('password', 'Password should be not empty').exists()
+    check('email', 'Введите корректный email').normalizeEmail().isEmail(),
+    check('password', 'Введите пароль').exists()
   ],
   async (req, res) => {
     try {
@@ -63,7 +63,7 @@ router.post(
       const {email, password} = req.body
 
       const user = await User.findOne({ email })
-      if(user) {
+      if(!user) {
         return res.status(400).json({ message: 'User not found' })
       }
 
